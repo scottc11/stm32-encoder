@@ -1,0 +1,16 @@
+
+{
+  "name": "stm32-encoder",
+  "description": "Encoder for STM32 MCUs",
+  "keywords": "encoder stm32",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scottc11/stm32-encoder"
+  },
+  "export": {
+    "include":
+    [
+      "src/Encoder.h"
+    ]
+  }
+}
