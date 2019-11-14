@@ -23,8 +23,16 @@
 
 extern TIM_HandleTypeDef htim2;
 
+typedef enum {
+  Incremented = 1,
+  Decremented = -1,
+  Neutral = 0,
+} Encoder_Status;
+
+
 void Encoder_Config(void);
 void Encoder_Init(void);
 uint16_t Encoder_Read();
-uint8_t Encoder_Direction();
+Encoder_Status Encoder_Get_Status();
+
 #endif

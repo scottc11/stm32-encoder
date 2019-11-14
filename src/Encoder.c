@@ -3,6 +3,8 @@
 
 TIM_HandleTypeDef htim2;
 
+static uint16_t newCount;
+static uint16_t prevCount;
 
 void Encoder_Init(void) {
   HAL_TIM_Encoder_Start(&htim2, TIM_CHANNEL_ALL);
@@ -11,6 +13,20 @@ void Encoder_Init(void) {
 uint16_t Encoder_Read() {
   uint16_t val = __HAL_TIM_GET_COUNTER(&htim2);
   return val >> 1;
+}
+
+Encoder_Status Encoder_Get_Status() {
+  newCount = Encoder_Read();
+  if (newCount != prevCount) {
+    if (newCount > prevCount) {
+      prevCount = newCount;
+      return Incremented;
+    } else {
+      prevCount = newCount;
+      return Decremented;
+    }
+  }
+  return Neutral;
 }
 
 /**
